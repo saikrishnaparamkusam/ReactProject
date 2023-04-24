@@ -22,6 +22,9 @@
                             <div>
                                 <p id ="animateText" class="animate-text"></p>
                                 <input id="userInput" class="user-input m-auto" type="text">
+                                <div>
+                                    <p class="text-danger text-center error-message" id="InvalidNameMsg"></p>
+                                </div>
                             </div>
                             <div id="submitButtonDiv" class="d-none text-center p-3">
                                 <button id="submitButton" class="button next-button m-auto">
@@ -62,7 +65,10 @@
                                 <h1 id="gradeMessage" class="grade-message text-center"></h1>
                                 <p id="scoreMessage" class="score-message text-center"></p>
                             </div>
-                            <div class="ms-auto me-auto">
+                            <div class="ms-auto me-auto mb-3 d-none" id="imageDiv">
+                                <img src="brahmi.gif" alt="I'm Brahmi" height="200" width="300">
+                            </div>
+                            <div class="ms-auto me-auto mb-3">
                                 <button id="tryAgainBtn" class="try-again-button">Try Again</button>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
-let sentence = "Hello Reader, What's your name?";
+let sentence = "Hey! this is Krishna, What's your name?";
 let i = 0;
-let speed = 10;
+let speed = 80;
 let CorrectAnswersCount = 0;
 const marksPerRightAnswer = 2;
 const messageforbelow25 = "You should know me better, You're my friend";
@@ -81,6 +81,7 @@ function start(){
     let questionDivElement = document.getElementById("questionDiv");
     let optionsDivElement = document.getElementById("optionsDiv");
     let submitButtonElement = document.getElementById("submitButton");
+    let invalidAnwserDivElement = document.getElementById("InvalidNameMsg");
     let mainDivElement = document.getElementById("mainDiv");
     let subDivElement = document.getElementById("subDiv");
     let scoreDisplayDivElement = document.getElementById("scoreDisplayDiv");
@@ -93,14 +94,21 @@ function start(){
     let userName;
     let gradeMessageElement = document.getElementById("gradeMessage");
     let tryAgainBtnElement = document.getElementById("tryAgainBtn");
+    let imageDivElement = document.getElementById("imageDiv");
 
     // stop displaying main_div and displays sub_div
     submitButtonElement.addEventListener('click', () => {
         userName = userInputElement.value;
-        mainDivElement.classList.add("d-none");
-        subDivElement.classList.remove("d-none");
-        nextButtonElement.disabled = true;
-        getQuestionsAndOptions();
+        if (userName.length >= 3){
+            mainDivElement.classList.add("d-none");
+            subDivElement.classList.remove("d-none");
+            nextButtonElement.disabled = true;
+            getQuestionsAndOptions();
+        }
+        else{
+            invalidAnwserDivElement.textContent = "Invalid Name, Please try again";
+        }
+       
         
     });
 
@@ -240,6 +248,8 @@ function start(){
         else{
             message += `"${messageforabove75}"`;
             messageFormatter(message);
+            imageDivElement.classList.remove("d-none");
+
         }
     }
   }
