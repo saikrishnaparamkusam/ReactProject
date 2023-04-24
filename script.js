@@ -2,7 +2,7 @@ let sentence = "Hey! This is Krishna, What's your name?";
 let i = 0;
 let speed = 80;
 let CorrectAnswersCount = 0;
-const marksPerRightAnswer = 2;
+const marksPerRightAnswer = 1;
 const messageforbelow25 = "You should know me better, You're my friend";
 const messageforbelow50 = "you can do better, You're my bestie";
 const messageforbelow75 = "You know me well, You're my true friend";
@@ -58,17 +58,17 @@ function start(){
     let optionIdCounter = 0;
     const questionsArray = [
         {
-            question : "What's my favorite color?",
+            question : "Which is my favorite color?",
             options : ['Green','Yellow','Orange','Blue'],
             answer : 4
         },
         {
-            question : "What's my favorite food?",
+            question : "Which is my favorite food?",
             options : ['Idly', 'Butter Naan & Paneer Curry', 'Biryani'],
             answer : 2
         },
         {
-            question : "What's my favorite place?",
+            question : "Which is my favorite place?",
             options : ['Hyderabad', 'Banglore', 'Ongole'],
             answer : 1
         },
@@ -78,23 +78,13 @@ function start(){
             answer : 1
         },
         {
-            question : "How do I like to spend my free time?",
-            options : ['Watching Movie', "Playing Video Game", "Walking & Chitchat with Friends"],
-            answer : 3
-        },
-        {
-            question : "Are you more of an extrovert or introvert?",
+            question : "Am I more of an extrovert or introvert?",
             options : ['Extrovert', "Introvert", "Ambivert"],
             answer : 1
         },
         {
             question : "When you’re in a bad mood, is there something that makes you feel it better? what?",
             options : ['Listening to Music', "Roaming Outside", "Both"],
-            answer : 3
-        },
-        {
-            question : "How do I like to spend my free time?",
-            options : ['Watching Movie', "Playing Video Game", "Walking & Chitchat with Friends"],
             answer : 3
         },
         {
