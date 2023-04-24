@@ -3,6 +3,11 @@ let i = 0;
 let speed = 10;
 let CorrectAnswersCount = 0;
 const marksPerRightAnswer = 2;
+const messageforbelow25 = "You should know me better, You're my friend";
+const messageforbelow50 = "you can do better, You're my bestie";
+const messageforbelow75 = "You know me well, You're my true friend";
+const messageforabove75 = "My friend... Living Legend";
+
 
 
 
@@ -84,11 +89,17 @@ function start(){
     let questionNumElement = document.getElementById("questionNum");
     let errorMsgElement = document.getElementById("errorMsg");
     let scoreMessageElement = document.getElementById("scoreMessage");
+    let userInputElement = document.getElementById("userInput");
+    let userName;
+    let gradeMessageElement = document.getElementById("gradeMessage");
+    let tryAgainBtnElement = document.getElementById("tryAgainBtn");
 
-    // Removes main div and display sub div
+    // stop displaying main_div and displays sub_div
     submitButtonElement.addEventListener('click', () => {
+        userName = userInputElement.value;
         mainDivElement.classList.add("d-none");
         subDivElement.classList.remove("d-none");
+        nextButtonElement.disabled = true;
         getQuestionsAndOptions();
         
     });
@@ -99,10 +110,14 @@ function start(){
             errorMsgElement.textContent = "";
             submitAnswerButtonElement.classList.add("disabled");
             nextButtonElement.classList.remove("disabled");
+            submitAnswerButtonElement.disabled = true;
+            nextButtonElement.disabled = false;
             validateAnswer();
 
             
         } else {  
+            submitAnswerButtonElement.disabled = false;
+            nextButtonElement.disabled = true;
             errorMsgElement.textContent = "Please select an option"; 
         }
     });
@@ -111,6 +126,8 @@ function start(){
         if(counter < questionsArray.length){
             getQuestionsAndOptions();
             submitAnswerButtonElement.classList.remove("disabled");
+            submitAnswerButtonElement.disabled = false;
+            nextButtonElement.disabled = true
             nextButtonElement.classList.add("disabled");
         }
         else{
@@ -118,7 +135,12 @@ function start(){
         }
         
         
-    } )
+    });
+
+    tryAgainBtnElement.addEventListener('click', () => {
+        location.href = "https://saikrishna-quiz.netlify.app/";
+        
+    });
 
 
     function getQuestionsAndOptions(){
@@ -169,16 +191,13 @@ function start(){
     //Displaying green and red colored border for right and wrong answers option div respectively
     function validateAnswer(){
         let getSelectedElement = document.querySelector( 'input[name="options"]:checked');  
-        let eachOptionDivElement = getSelectedElement.parentElement;
-        console.log(getSelectedElement.value);  
+        let eachOptionDivElement = getSelectedElement.parentElement; 
         if(getSelectedElement.value !== null) {
             let answerIndex = questionsArray[counter - 1].answer;
             let answer = questionsArray[counter - 1].options[answerIndex - 1];
             let answerOptionDiv = document.getElementById(`option${answerIndex}Div`);
-            console.log(answerOptionDiv);
             if(getSelectedElement.value === answer){
                 CorrectAnswersCount += marksPerRightAnswer;
-                console.log(CorrectAnswersCount);
                 eachOptionDivElement.classList.add("correct-answer");
             } else{
                 eachOptionDivElement.classList.add("wrong-answer");
@@ -196,6 +215,32 @@ function start(){
         let total_marks = questionsArray.length * marksPerRightAnswer;
         let message = `Your score is ${CorrectAnswersCount} out of ${total_marks}`;
         scoreMessageElement.textContent = message;
+        let scorePercentage = (CorrectAnswersCount * 100) / total_marks;
+        gradeMessage(scorePercentage);
+    }
+    function messageFormatter(message){
+        gradeMessageElement.innerHTML = message;
+
+    }
+    function gradeMessage(percentage){
+        let spanElement = `<span class="user-name">Hey ${userName}</span>`;
+        let message = `${spanElement} ! <br/><br/>`;
+        if(percentage <= 25){
+            message += `"${messageforbelow25}"`;
+            messageFormatter(message);
+        }
+        else if(percentage <= 50){
+            message += `"${messageforbelow25}"`;
+            messageFormatter(message);
+        }
+        else if(percentage <= 75){
+            message += `"${messageforbelow75}"`;
+            messageFormatter(message);
+        }
+        else{
+            message += `"${messageforabove75}"`;
+            messageFormatter(message);
+        }
     }
   }
 
