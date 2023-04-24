@@ -1,4 +1,4 @@
-let sentence = "Hey! this is Krishna, What's your name?";
+let sentence = "Hey! This is Krishna, What's your name?";
 let i = 0;
 let speed = 80;
 let CorrectAnswersCount = 0;
@@ -59,19 +59,66 @@ function start(){
     const questionsArray = [
         {
             question : "What's my favorite color?",
-            options : ['Red', 'Blue', 'Black', 'White', 'Grey', 'Violet'],
-            answer : 2
+            options : ['Green','Yellow','Orange','Blue'],
+            answer : 4
         },
         {
             question : "What's my favorite food?",
-            options : ['Kaju Biryani', 'Butter Naan & Paneer Curry', 'Oat Meal', 'Pizza'],
+            options : ['Idly', 'Butter Naan & Paneer Curry', 'Biryani'],
             answer : 2
         },
         {
             question : "What's my favorite place?",
-            options : ['Hyderabad', 'Banglore', 'Ongole', 'Vetlapalem'],
+            options : ['Hyderabad', 'Banglore', 'Ongole'],
+            answer : 1
+        },
+        {
+            question : "Which kind of person I am?",
+            options : ['Morning', 'Night'],
+            answer : 1
+        },
+        {
+            question : "How do I like to spend my free time?",
+            options : ['Watching Movie', "Playing Video Game", "Walking & Chitchat with Friends"],
+            answer : 3
+        },
+        {
+            question : "Are you more of an extrovert or introvert?",
+            options : ['Extrovert', "Introvert", "Ambivert"],
+            answer : 1
+        },
+        {
+            question : "When you’re in a bad mood, is there something that makes you feel it better? what?",
+            options : ['Listening to Music', "Roaming Outside", "Both"],
+            answer : 3
+        },
+        {
+            question : "How do I like to spend my free time?",
+            options : ['Watching Movie', "Playing Video Game", "Walking & Chitchat with Friends"],
+            answer : 3
+        },
+        {
+            question : "Which one I like?",
+            options : ['Sweet', 'Spicy'],
+            answer : 1
+        },
+        {
+            question : "What climate I like ?",
+            options : ['Summer', 'Winter', 'Rainy'],
             answer : 2
-        }    
+        },
+        {
+            question : "Which person I admire most?",
+            options : ['Virat Kohli', 'M S Dhoni'],
+            answer : 1
+        },
+        {
+            question : "Which one do I prefer?",
+            options : ['Beard', 'No Beard'],
+            answer : 1
+        },
+
+
     ];
     let no_of_questions = questionsArray.length;
     
