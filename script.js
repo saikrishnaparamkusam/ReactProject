@@ -1,6 +1,8 @@
 let sentence = "Hello Reader, What's your name?";
 let i = 0;
 let speed = 10;
+let CorrectAnswersCount = 0;
+const marksPerRightAnswer = 2;
 
 
 
@@ -48,10 +50,11 @@ function start(){
     let startButtonElement = document.getElementById("startButton");
     startButtonElement.addEventListener('click', start);
     let counter = 0;
+    let optionIdCounter = 0;
     const questionsArray = [
         {
             question : "What's my favorite color?",
-            options : ['Red', 'Blue', 'Black', 'White'],
+            options : ['Red', 'Blue', 'Black', 'White', 'Grey', 'Violet'],
             answer : 2
         },
         {
@@ -73,31 +76,50 @@ function start(){
     let questionDivElement = document.getElementById("questionDiv");
     let optionsDivElement = document.getElementById("optionsDiv");
     let submitButtonElement = document.getElementById("submitButton");
-    let subDivElement = document.getElementById("subDiv");
     let mainDivElement = document.getElementById("mainDiv");
+    let subDivElement = document.getElementById("subDiv");
+    let scoreDisplayDivElement = document.getElementById("scoreDisplayDiv");
     let nextButtonElement = document.getElementById("nextButton");
+    let submitAnswerButtonElement = document.getElementById("submitAnswerButton");
     let questionNumElement = document.getElementById("questionNum");
     let errorMsgElement = document.getElementById("errorMsg");
+    let scoreMessageElement = document.getElementById("scoreMessage");
 
     // Removes main div and display sub div
     submitButtonElement.addEventListener('click', () => {
         mainDivElement.classList.add("d-none");
         subDivElement.classList.remove("d-none");
         getQuestionsAndOptions();
+        
+    });
+
+    submitAnswerButtonElement.addEventListener('click', () => {
+        let getSelectedValue = document.querySelector( 'input[name="options"]:checked');   
+        if(getSelectedValue !== null) {   
+            errorMsgElement.textContent = "";
+            submitAnswerButtonElement.classList.add("disabled");
+            nextButtonElement.classList.remove("disabled");
+            validateAnswer();
+
+            
+        } else {  
+            errorMsgElement.textContent = "Please select an option"; 
+        }
     });
 
     nextButtonElement.addEventListener('click', () => {
-        var getSelectedValue = document.querySelector( 'input[name="options"]:checked');   
-        if(getSelectedValue !== null) {   
-            errorMsgElement.textContent = "";
-            console.log("Radio button is selected");  
+        if(counter < questionsArray.length){
             getQuestionsAndOptions();
-        } else {  
-            errorMsgElement.textContent = "Please select an option"; 
-            
+            submitAnswerButtonElement.classList.remove("disabled");
+            nextButtonElement.classList.add("disabled");
+        }
+        else{
+            displayingScore();
         }
         
-    });
+        
+    } )
+
 
     function getQuestionsAndOptions(){
         let eachQuestionObj = questionsArray[counter];
@@ -118,21 +140,62 @@ function start(){
     function createAndAppendOptions(options){
         optionsDivElement.textContent = "";
         options.forEach(eachOption => {
+            optionIdCounter++;
+            let divElement = document.createElement("div");
+            divElement.id = `option${optionIdCounter}Div`;
+            divElement.classList.add("w-50","p-1");
+            optionsDivElement.appendChild(divElement);
             let radioElement = document.createElement("input");
             radioElement.type = "radio";
             radioElement.classList.add("radio-options");
             radioElement.value = eachOption;
-            radioElement.id = eachOption;
+            radioElement.id = `option${optionIdCounter}`;
             radioElement.name = "options";
-            optionsDivElement.appendChild(radioElement);
+            divElement.appendChild(radioElement);
             let labelElement = document.createElement("label");
-            labelElement.setAttribute("for", eachOption);
-            labelElement.classList.add("options","p-2");
+            labelElement.setAttribute("for", `option${optionIdCounter}`);
+            labelElement.classList.add("options","ps-2");
             labelElement.textContent = eachOption;
-            optionsDivElement.appendChild(labelElement);
+            divElement.appendChild(labelElement);
             let breakElement = document.createElement("br");
             optionsDivElement.appendChild(breakElement);
+            
+            if(optionIdCounter === options.length){
+                optionIdCounter = 0;
+            }
         }); 
+    }
+
+    //Displaying green and red colored border for right and wrong answers option div respectively
+    function validateAnswer(){
+        let getSelectedElement = document.querySelector( 'input[name="options"]:checked');  
+        let eachOptionDivElement = getSelectedElement.parentElement;
+        console.log(getSelectedElement.value);  
+        if(getSelectedElement.value !== null) {
+            let answerIndex = questionsArray[counter - 1].answer;
+            let answer = questionsArray[counter - 1].options[answerIndex - 1];
+            let answerOptionDiv = document.getElementById(`option${answerIndex}Div`);
+            console.log(answerOptionDiv);
+            if(getSelectedElement.value === answer){
+                CorrectAnswersCount += marksPerRightAnswer;
+                console.log(CorrectAnswersCount);
+                eachOptionDivElement.classList.add("correct-answer");
+            } else{
+                eachOptionDivElement.classList.add("wrong-answer");
+                answerOptionDiv.classList.add('correct-answer');
+            }
+            
+        } else {  
+            errorMsgElement.textContent = "Please select an option"; 
+        }
+    }
+
+    function displayingScore(){
+        scoreDisplayDivElement.classList.remove("d-none");
+        subDivElement.classList.add("d-none");
+        let total_marks = questionsArray.length * marksPerRightAnswer;
+        let message = `Your score is ${CorrectAnswersCount} out of ${total_marks}`;
+        scoreMessageElement.textContent = message;
     }
   }
 

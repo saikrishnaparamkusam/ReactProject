@@ -1,3 +1,10 @@
+.a{
+    color: green;;
+}
+.b{
+    color: red;
+}
+
 .contentBox{
     border-color: rgba(22, 233, 106, 0.582);
     border-radius: 2px;
@@ -31,6 +38,18 @@ body{
     color: rgba(22, 233, 106, 0.582);
     border-color: rgba(22, 233, 106, 0.582);
     border-radius: 2px;
+
+}
+
+.submit-answer-button{
+    background-color: rgba(0, 0, 0, 0.582);
+    color: rgba(22, 233, 106, 0.582);
+    border-color: rgba(22, 233, 106, 0.582);
+    border-radius: 2px;
+}
+.disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .user-input{
@@ -67,4 +86,13 @@ body{
 }
 .error-message{
     font-family: "Roboto";
+}
+.correct-answer{
+    border: 2px solid rgba(22, 233, 106, 0.582);
+}
+.wrong-answer{
+    border: 2px solid rgba(206, 6, 6, 0.936);
+}
+.score-message{
+    color: rgba(22, 233, 106, 0.582);
 }

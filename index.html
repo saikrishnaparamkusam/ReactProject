@@ -17,41 +17,48 @@
         <div class="row">
             <div class="d-flex flex-column justify-content-center background-container">
                 <div class="d-flex flex-row justify-content-center">
-                    <div id="mainDiv" class="contentBox col-7 d-flex flex-column justify-content-center">
-                        <button id="startButton" class="button start-button m-auto">Start</button>
-                        <div>
-                            <p id ="animateText" class="animate-text"></p>
-                            <input id="userInput" class="user-input m-auto" type="text">
-                        </div>
-                        <div id="submitButtonDiv" class="d-none text-center p-3">
-                            <button id="submitButton" class="button next-button m-auto">
-                                <i class="fa-sharp fa-solid fa-arrow-right-long"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div id="subDiv" class="d-none contentBox col-7">
-                        <div class="d-flex flex-column justify-content-center">
-                            <div class="d-flex flex-row justify-content-between">
-                                <div class="question-div" id="questionDiv">
-                                    
-                                </div>
-                                <div class="question p-3 ">
-                                    <p id="questionNum">Hello</p>
-                                </div>
-                            </div>
-                            
-                            <div class="options-div ps-4" id="optionsDiv">
-                                
-                            </div>
+                        <div id="mainDiv" class="contentBox col-7 d-flex flex-column justify-content-center">
+                            <button id="startButton" class="button start-button m-auto">Start</button>
                             <div>
-                                <p class="text-danger text-center error-message" id="errorMsg"></p>
+                                <p id ="animateText" class="animate-text"></p>
+                                <input id="userInput" class="user-input m-auto" type="text">
                             </div>
-
-                            <div id="nextButtonDiv" class=" text-center p-3">
-                                <button id="nextButton" class="button next-button m-auto">
+                            <div id="submitButtonDiv" class="d-none text-center p-3">
+                                <button id="submitButton" class="button next-button m-auto">
                                     <i class="fa-sharp fa-solid fa-arrow-right-long"></i>
                                 </button>
                             </div>
+                        </div>
+                        <div id="subDiv" class="d-none contentBox col-7">
+                            <div class="d-flex flex-column justify-content-center">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <div class="question-div" id="questionDiv">
+                                        
+                                    </div>
+                                    <div class="question p-3 ">
+                                        <p id="questionNum">Hello</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="options-div ps-4" id="optionsDiv">
+                                    
+                                </div>
+                                <div>
+                                    <p class="text-danger text-center error-message" id="errorMsg"></p>
+                                </div>
+
+                                <div id="ButtonsDiv" class=" text-center p-3">
+                                    <button id="submitAnswerButton" class="button submit-answer-button">
+                                        Submit
+                                    </button>
+                                    <button id="nextButton" class="button next-button m-auto ms-3 disabled">
+                                        Next <i class="fa-sharp fa-solid fa-arrow-right-long"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="scoreDisplayDiv" class="contentBox col-7 d-none d-flex flex-column justify-content-center">
+                            <h1 id="scoreMessage" class="score-message text-center"></h1>
                         </div>
                     </div>
                 </div>
